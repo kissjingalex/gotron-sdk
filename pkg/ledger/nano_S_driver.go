@@ -7,8 +7,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-
-	"github.com/zondax/hid"
 )
 
 const (
@@ -237,26 +235,31 @@ func OpenNanoS() (*NanoS, error) {
 		//ledgerUsageID        = 0xffa0
 	)
 
+	return nil, nil
+
 	// search for Nano S
-	devices := hid.Enumerate(ledgerVendorID, ledgerNanoSProductID)
-	if len(devices) == 0 {
-		return nil, errors.New("Nano S not detected")
-	} else if len(devices) > 1 {
-		return nil, errors.New("Unexpected error -- Is the one wallet app running?")
-	}
+	// 2024.3.25 in order to remove dependency of hid  (github.com/zondax/hid)
+	/*
+		devices := hid.Enumerate(ledgerVendorID, ledgerNanoSProductID)
+		if len(devices) == 0 {
+			return nil, errors.New("Nano S not detected")
+		} else if len(devices) > 1 {
+			return nil, errors.New("Unexpected error -- Is the one wallet app running?")
+		}
 
-	// open the device
-	device, err := devices[0].Open()
-	if err != nil {
-		return nil, err
-	}
+		// open the device
+		device, err := devices[0].Open()
+		if err != nil {
+			return nil, err
+		}
 
-	// wrap raw device I/O in HID+APDU protocols
-	return &NanoS{
-		device: &apduFramer{
-			hf: &hidFramer{
-				rw: device,
+		// wrap raw device I/O in HID+APDU protocols
+		return &NanoS{
+			device: &apduFramer{
+				hf: &hidFramer{
+					rw: device,
+				},
 			},
-		},
-	}, nil
+		}, nil
+	*/
 }

@@ -17,7 +17,6 @@ require (
 	github.com/spf13/cobra v1.0.0
 	github.com/stretchr/testify v1.8.1
 	github.com/tyler-smith/go-bip39 v1.1.0
-	github.com/zondax/hid v0.9.1
 	go.uber.org/zap v1.15.0
 	golang.org/x/crypto v0.9.0
 	google.golang.org/genproto v0.0.0-20200825200019-8632dd797987
